@@ -14,12 +14,15 @@ const categories = computed(() => {
   return ['Toutes', ...uniques]
 })
 
-// Filtre catégorie puis filtre texte (insensible à la casse)
+// Filtre catégorie puis filtre texte sur nom ET nom_fr (insensible à la casse)
 const keywordsFiltres = computed(() => {
   const terme = recherche.value.toLowerCase().trim()
   return liste
     .filter(k => categorieActive.value === 'Toutes' || k.categorie === categorieActive.value)
-    .filter(k => k.nom.toLowerCase().includes(terme))
+    .filter(k =>
+      k.nom.toLowerCase().includes(terme) ||
+      (k.nom_fr ?? '').toLowerCase().includes(terme)
+    )
 })
 </script>
 
@@ -63,7 +66,9 @@ const keywordsFiltres = computed(() => {
         class="bg-stone-800 border border-stone-700 rounded p-3"
       >
         <div class="flex items-start justify-between gap-2 mb-1">
-          <span class="font-semibold text-sm">{{ kw.nom }}</span>
+          <span class="font-semibold text-sm">
+            {{ kw.nom }}<span v-if="kw.nom_fr" class="text-stone-400 font-normal"> / {{ kw.nom_fr }}</span>
+          </span>
           <div class="flex items-center gap-2 flex-shrink-0">
             <span class="text-xs text-stone-500 uppercase tracking-wider">{{ kw.categorie }}</span>
             <!-- Indicateur visuel : entrée incomplète dans le JSON -->
