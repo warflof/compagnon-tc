@@ -70,11 +70,16 @@ clés et expliquer les choix techniques quand il le demande, sans jargon inutile
 ## État d'avancement
 - [x] Cadrage complet, modèle de données, règles de sécurité, wireframes
 - [x] Squelette du projet (ce repo) : build OK, écran connexion non branché
-- [ ] Script SQL des tables + RLS dans Supabase
-- [ ] Auth pseudo+PIN branchée
+- [x] Script SQL des tables + RLS dans Supabase (`supabase/schema.sql`)
+- [x] Auth pseudo+PIN branchée (`src/lib/auth.js` + `ConnexionView.vue` + garde router)
 - [ ] CRUD warbands/unités alimenté par les catalogues JSON
 - [ ] Saisie de partie + classement de campagne
 - [ ] Déploiement GitHub Pages + bataille test avec les 6 joueurs
+
+## Notes techniques
+- PIN : **6 chiffres** (et non 4 comme prévu initialement) — Supabase Auth exige un minimum
+  de 6 caractères, on s'y conforme plutôt que de modifier la config
+- npm : `strict-ssl false` configuré localement (proxy/antivirus qui intercepte le TLS)
 
 ## Question ouverte (à trancher avec le groupe)
 La consultation des warbands adverses montre-t-elle tout, ou masque-t-on
