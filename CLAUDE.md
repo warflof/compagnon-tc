@@ -82,17 +82,21 @@ clés et expliquer les choix techniques quand il le demande, sans jargon inutile
 
 ## Structure keywords.json (`src/data/keywords.json`)
 ```json
-[
-  {
-    "nom": "Nom du keyword",
-    "categorie": "Trait",
-    "description": "Texte de règles complet.",
-    "a_completer": false
-  }
-]
+{
+  "_meta": { "titre": "...", "version_regles": "...", "categories": { "tag": "...", ... } },
+  "keywords": [
+    {
+      "cle": "blessed",
+      "nom": "BLESSED(X)",
+      "categorie": "figurine",
+      "definition": "Texte de règles complet.",
+      "a_completer": false
+    }
+  ]
+}
 ```
-Champs : `nom` (string), `categorie` (string — valeur libre, sert aux filtres),
-`description` (string), `a_completer` (boolean — affiche un badge orange dans le glossaire).
+Champs : `cle` (slug unique), `nom` (affiché), `categorie` (sert aux filtres — valeurs actuelles :
+`tag` / `objet` / `attaque` / `figurine`), `definition` (texte), `a_completer` (boolean — badge orange).
 
 ## Notes techniques
 - PIN : **6 chiffres** (et non 4 comme prévu initialement) — Supabase Auth exige un minimum

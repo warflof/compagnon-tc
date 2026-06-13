@@ -1,20 +1,23 @@
 <script setup>
 import { ref, computed } from 'vue'
-import keywords from '../data/keywords.json'
+import data from '../data/keywords.json'
+
+// Le JSON a une enveloppe { _meta, keywords: [...] }
+const liste = data.keywords
 
 const recherche = ref('')
 const categorieActive = ref('Toutes')
 
 // Liste dédoublonnée et triée des catégories présentes dans le JSON
 const categories = computed(() => {
-  const uniques = [...new Set(keywords.map(k => k.categorie))].sort()
+  const uniques = [...new Set(liste.map(k => k.categorie))].sort()
   return ['Toutes', ...uniques]
 })
 
 // Filtre catégorie puis filtre texte (insensible à la casse)
 const keywordsFiltres = computed(() => {
   const terme = recherche.value.toLowerCase().trim()
-  return keywords
+  return liste
     .filter(k => categorieActive.value === 'Toutes' || k.categorie === categorieActive.value)
     .filter(k => k.nom.toLowerCase().includes(terme))
 })
@@ -72,7 +75,7 @@ const keywordsFiltres = computed(() => {
             </span>
           </div>
         </div>
-        <p class="text-sm text-stone-400 leading-relaxed">{{ kw.description }}</p>
+        <p class="text-sm text-stone-400 leading-relaxed">{{ kw.definition }}</p>
       </li>
     </ul>
   </main>
