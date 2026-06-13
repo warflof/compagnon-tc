@@ -4,6 +4,7 @@ import './style.css'
 import App from './App.vue'
 import ConnexionView from './views/ConnexionView.vue'
 import AccueilView from './views/AccueilView.vue'
+import GlossaireView from './views/GlossaireView.vue'
 import { supabase } from './lib/supabase'
 
 // Routes de l'appli — on utilise le mode "hash" (#/) :
@@ -11,6 +12,7 @@ import { supabase } from './lib/supabase'
 const routes = [
   { path: '/', component: ConnexionView },
   { path: '/campagne', component: AccueilView },
+  { path: '/glossaire', component: GlossaireView },
 ]
 
 const router = createRouter({

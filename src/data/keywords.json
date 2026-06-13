@@ -1,0 +1,8 @@
+[
+  {
+    "nom": "Exemple Keyword",
+    "categorie": "Trait",
+    "description": "Remplace ce fichier par le vrai contenu. Chaque entrée : nom, categorie, description, a_completer (true/false).",
+    "a_completer": true
+  }
+]

@@ -18,6 +18,7 @@ clés et expliquer les choix techniques quand il le demande, sans jargon inutile
 2. Consultation des warbands des autres joueurs en **lecture seule**
 3. Suivi de campagne partagé : parties, classement aux Points de Victoire de Campagne
 4. Assistant/saisie post-bataille simplifiée
+5. Glossaire des keywords : consultation en lecture seule, recherche + filtre par catégorie
 
 ## Décisions actées (registre)
 - Campagne **officielle 12 parties** ; paramètres (seuils 700→2200 ducats, PV par résultat,
@@ -72,9 +73,26 @@ clés et expliquer les choix techniques quand il le demande, sans jargon inutile
 - [x] Squelette du projet (ce repo) : build OK, écran connexion non branché
 - [x] Script SQL des tables + RLS dans Supabase (`supabase/schema.sql`)
 - [x] Auth pseudo+PIN branchée (`src/lib/auth.js` + `ConnexionView.vue` + garde router)
+- [x] Déploiement GitHub Pages via GitHub Actions (`.github/workflows/deploy.yml`)
+- [x] Glossaire des keywords (`GlossaireView.vue` + `src/data/keywords.json` à remplir)
+- [x] Barre de navigation bas de page (Campagne + Glossaire actifs ; Warbands/Historique/Joueurs à venir)
 - [ ] CRUD warbands/unités alimenté par les catalogues JSON
 - [ ] Saisie de partie + classement de campagne
-- [ ] Déploiement GitHub Pages + bataille test avec les 6 joueurs
+- [ ] Bataille test avec les 6 joueurs
+
+## Structure keywords.json (`src/data/keywords.json`)
+```json
+[
+  {
+    "nom": "Nom du keyword",
+    "categorie": "Trait",
+    "description": "Texte de règles complet.",
+    "a_completer": false
+  }
+]
+```
+Champs : `nom` (string), `categorie` (string — valeur libre, sert aux filtres),
+`description` (string), `a_completer` (boolean — affiche un badge orange dans le glossaire).
 
 ## Notes techniques
 - PIN : **6 chiffres** (et non 4 comme prévu initialement) — Supabase Auth exige un minimum
